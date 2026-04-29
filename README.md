@@ -1,221 +1,72 @@
-# 🚗 MetroTrust Fleet Management System (FMS)
+# MetroTrust Fleet Management System
 
-MetroTrust FMS is a modern, web-based fleet management system designed to manage vehicles, drivers, investors, remittances, and maintenance operations in one centralized platform.
+MetroTrust FMS is a modern static web application for managing vehicles, drivers, investors, remittances, maintenance, invoices, and role-based portals. It is built with plain HTML, CSS, and JavaScript, and uses LocalStorage by default so it can run without a backend.
 
----
+## What is included
 
-## 📌 Overview
+- Role-based login for Super Admin, Manager, Staff, Driver, and Investor.
+- Fleet, driver, investor, remittance, maintenance, invoice, report, user, and settings modules.
+- Driver portal with assigned vehicle and remittance history.
+- Investor portal with earnings, maintenance costs, net earnings, and invoices.
+- Daily, weekly, and monthly remittance summaries.
+- Printable report and invoice views that can be saved as PDF from the browser print dialog.
+- Local JSON backup and restore.
+- Supabase-ready `.env.example` and SQL schema for future cloud integration.
+- Real local image assets and inline SVG icons. No emoji-based UI is used.
 
-This system provides a complete solution for managing transport operations, including:
+## Project structure
 
-* Driver and staff management
-* Fleet (vehicle) tracking
-* Maintenance logging
-* Daily/weekly/monthly remittances
-* Investor earnings tracking
-* Invoice generation
-* Role-based dashboards (Admin, Manager, Staff, Driver, Investor)
-
----
-
-## 🚀 Features
-
-### 🔐 Authentication & Access Control
-
-* Role-based login system:
-
-  * Super Admin
-  * Manager
-  * Staff
-* Magic link login (via Supabase - optional)
-
----
-
-### 👥 User Management
-
-* Add, edit, delete staff
-* Assign roles and permissions
-* Manage drivers and investors
-
----
-
-### 🚙 Fleet Management
-
-* Register vehicles
-* Assign drivers and owners
-* Track vehicle status (Active, Maintenance, Inactive)
-
----
-
-### 🔧 Maintenance Tracking
-
-* Log vehicle services
-* Track costs and service providers
-* Monitor maintenance status
-
----
-
-### 💰 Remittance System
-
-* Record driver daily earnings
-* Payment methods (M-Pesa, Cash, Bank, etc.)
-* Auto summaries:
-
-  * Daily
-  * Weekly
-  * Monthly
-
----
-
-### 📊 Dashboard & Reports
-
-* Real-time stats:
-
-  * Active drivers
-  * Fleet size
-  * Revenue
-  * Maintenance alerts
-* Generate printable PDF reports
-
----
-
-### 🧾 Invoice Generator
-
-* Create invoices for:
-
-  * Maintenance
-  * Remittances
-  * Investor earnings
-* Live preview before export
-
----
-
-### 👨‍💼 Investor Portal
-
-* View earnings per vehicle
-* Track performance
-* Financial summaries
-
----
-
-### 🧑‍✈️ Driver Portal
-
-* View trips and remittances
-* Performance tracking
-
----
-
-## 🛠 Tech Stack
-
-* **Frontend:** HTML, CSS, JavaScript
-* **Storage:** LocalStorage (default)
-* **Backend (optional):** Supabase
-* **PDF Generation:** jsPDF
-
----
-
-## 📂 Project Structure
-
-```
-project-root/
-│
-├── index.html          # Main application file
-├── assets/             # Images, icons (optional)
-├── database/           # SQL & schema (if using Supabase)
-├── docs/               # Documentation
-├── .env.example        # Environment variables template
-└── README.md
+```text
+metrotrust-fms-robust/
+  index.html
+  README.md
+  .env.example
+  assets/
+    css/
+      styles.css
+    images/
+      driver-cabin.jpg
+      maintenance-bay.jpg
+    js/
+      app.js
+  database/
+    schema.sql
+  docs/
+    IMAGE_SOURCES.md
 ```
 
----
+## Run locally
 
-## ⚙️ Setup & Installation
-
-### 1. Clone the repository
+Open `index.html` directly in a browser, or serve the folder with any static server:
 
 ```bash
-git clone https://github.com/your-username/metrotrust-fms.git
-cd metrotrust-fms
+npx serve metrotrust-fms-robust
 ```
 
-### 2. Run the project
+## Demo accounts
 
-Simply open the HTML file in your browser:
+| Role | Email | Password |
+| --- | --- | --- |
+| Super Admin | `admin@metrotrust.local` | `admin123` |
+| Manager | `manager@metrotrust.local` | `manager123` |
+| Staff | `staff@metrotrust.local` | `staff123` |
+| Driver | `driver@metrotrust.local` | `driver123` |
+| Investor | `investor@metrotrust.local` | `investor123` |
 
-```bash
-open index.html
-```
+## Storage
 
-Or use a local server (recommended):
+The app stores records in browser LocalStorage under `metrotrust_fms_robust_v1`. Use Settings to back up or restore data as JSON.
 
-```bash
-npx serve
-```
+For Supabase, create a project, run `database/schema.sql`, copy `.env.example` to `.env`, and replace the placeholder project URL and anon key. The UI includes a magic-link action placeholder so authentication can be wired through Supabase Auth later.
 
----
+## Production notes
 
+- Replace demo passwords with Supabase Auth before live use.
+- Review row-level security policies and tenant isolation if operating multiple companies.
+- Add server-side validation for payments, invoices, and M-Pesa callbacks.
+- Add a real PDF service or jsPDF integration if you need one-click PDF files instead of browser print-to-PDF.
+- Add scheduled jobs for service reminders and investor statement generation.
 
+## Image attribution
 
-## 🌐 Supabase Integration (Optional)
-
-To enable:
-
-* Magic link authentication
-* Cloud database storage
-
-1. Create a project on Supabase
-2. Add your keys to `.env`:
-
-```
-VITE_SUPABASE_URL=your_url
-VITE_SUPABASE_ANON_KEY=your_key
-```
-
-3. Update the frontend to use Supabase client
-
----
-
-## 📱 Responsive Design
-
-* Desktop sidebar navigation
-* Mobile bottom navigation
-* Optimized UI for small screens
-
----
-
-## 🧠 Key Design Decisions
-
-* Uses **localStorage** for offline-first functionality
-* Modular UI with reusable components
-* Role-based access control built into navigation
-* Clean separation of features (Drivers, Fleet, Reports, etc.)
-
----
-
-## ⚠️ Known Limitations
-
-* Data is stored locally (not persistent across devices)
-* Supabase integration is optional and not fully wired by default
-* No backend API layer (can be added later)
-
----
-
-## 🚀 Future Improvements
-
-* Full Supabase backend integration
-* Real-time updates
-* GPS tracking integration
-* Payment gateway (M-Pesa API)
-* Multi-tenant support
-
----
-
-## 👨‍💻 Author
-
-Developed by a Software Developer specializing in modern web systems and scalable applications.
-
----
-
-## 📄 License
-
-This project is open-source and available for learning and customization.
+See `docs/IMAGE_SOURCES.md` for the real image assets used in this project.

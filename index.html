@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MetroTrust Fleet Management System">
+  <title>MetroTrust Fleet Management System</title>
+  <link rel="preload" as="image" href="assets/images/driver-cabin.jpg">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <main id="loginScreen" class="login-screen">
+    <section class="login-media" aria-label="MetroTrust operations">
+      <img src="assets/images/driver-cabin.jpg" alt="Driver cabin view">
+      <div class="login-media-caption">
+        <span>MetroTrust FMS</span>
+        <strong>Fleet control, finance visibility, and service accountability in one workspace.</strong>
+        <div class="login-stats" aria-label="System highlights">
+          <div><b>24/7</b><small>operations view</small></div>
+          <div><b>5</b><small>role portals</small></div>
+          <div><b>PDF</b><small>ready reports</small></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="login-panel" aria-labelledby="loginTitle">
+      <div class="login-card">
+        <div class="brand-mark">
+          <span class="brand-icon" aria-hidden="true">MT</span>
+          <div>
+            <p class="eyebrow">Fleet Management System</p>
+            <h1 id="loginTitle">MetroTrust</h1>
+          </div>
+        </div>
+
+        <div class="login-card-copy">
+          <h2>Sign in to your workspace</h2>
+          <p>Use the account assigned to your MetroTrust role. Demo credentials are documented in the README file.</p>
+        </div>
+
+        <form id="loginForm" class="auth-form">
+          <label for="loginEmail">Email address</label>
+          <input id="loginEmail" name="email" type="email" autocomplete="username" placeholder="name@metrotrust.local" required>
+
+          <label for="loginPassword">Password</label>
+          <input id="loginPassword" name="password" type="password" autocomplete="current-password" placeholder="Enter password" required>
+
+          <button class="primary-action" type="submit">
+            <span data-icon="log-in"></span>
+            Sign in
+          </button>
+        </form>
+
+        <button id="magicLinkBtn" class="ghost-action" type="button">
+          <span data-icon="mail"></span>
+          Send magic link
+        </button>
+
+        <div class="login-assurance">
+          <span data-icon="shield"></span>
+          <span>Role-based access for administration, operations, drivers, and investors.</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="appShell" class="app-shell" hidden>
+    <header class="topbar">
+      <button id="menuToggle" class="icon-button only-mobile" type="button" aria-label="Toggle navigation">
+        <span data-icon="menu"></span>
+      </button>
+      <div class="topbar-brand">
+        <span class="brand-icon small" aria-hidden="true">MT</span>
+        <div>
+          <strong>MetroTrust FMS</strong>
+          <span id="companyLine">Fleet Management System</span>
+        </div>
+      </div>
+      <div class="topbar-actions">
+        <button id="printPageBtn" class="icon-button" type="button" aria-label="Print current page">
+          <span data-icon="printer"></span>
+        </button>
+        <div id="userChip" class="user-chip"></div>
+        <button id="logoutBtn" class="ghost-action compact" type="button">
+          <span data-icon="log-out"></span>
+          Logout
+        </button>
+      </div>
+    </header>
+
+    <aside id="sidebar" class="sidebar" aria-label="Primary navigation">
+      <nav id="sideNav"></nav>
+    </aside>
+
+    <nav id="mobileNav" class="mobile-nav" aria-label="Mobile navigation"></nav>
+
+    <main class="workspace">
+      <section class="page-heading">
+        <div>
+          <p id="pageEyebrow" class="eyebrow">Workspace</p>
+          <h2 id="pageTitle">Dashboard</h2>
+          <p id="pageSubtitle">Operational overview</p>
+        </div>
+        <div id="pageActions" class="page-actions"></div>
+      </section>
+      <section id="pageContent" class="page-content" aria-live="polite"></section>
+    </main>
+  </div>
+
+  <div id="modalRoot" class="modal-root" hidden>
+    <div class="modal-backdrop" data-close-modal></div>
+    <section class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <header class="modal-header">
+        <div>
+          <p id="modalEyebrow" class="eyebrow">Record</p>
+          <h3 id="modalTitle">Modal</h3>
+        </div>
+        <button class="icon-button" type="button" data-close-modal aria-label="Close modal">
+          <span data-icon="x"></span>
+        </button>
+      </header>
+      <div id="modalBody" class="modal-body"></div>
+    </section>
+  </div>
+
+  <template id="emptyStateTemplate">
+    <div class="empty-state">
+      <span data-icon="inbox"></span>
+      <strong>No records yet</strong>
+      <p>Add a record to start building operational history.</p>
+    </div>
+  </template>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
